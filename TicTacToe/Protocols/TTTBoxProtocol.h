@@ -4,6 +4,7 @@
 
 @protocol TTTBoxDelegate <NSObject>
 
-- (void)boxTapped:(TTTBoxView *)boxView;
+- (void)boxTappedWithValues:(NSDictionary *)coordinates
+        completion:(void (^)(NSNumber *value))completion;
 
 @end

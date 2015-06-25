@@ -10,7 +10,7 @@
 @interface TTTBoxView ()
 {
   TTTOView *oView;
-  NSNumber *value;
+  TTTBoxViewModel *viewModel;
   TTTXView *xView;
 }
 
@@ -18,12 +18,14 @@
 
 @implementation TTTBoxView
 
-- (instancetype)initWithBoxViewModel:(TTTBoxViewModel *)viewModel
+- (instancetype)initWithBoxViewModel:(TTTBoxViewModel *)vm
 {
-  self = [super initWithFrame:[viewModel frame]];
+  self = [super initWithFrame:[vm frame]];
   if (!self) { return nil; }
 
-  [self addBorders:viewModel];
+  viewModel = vm;
+
+  [self addBorders];
 
   UITapGestureRecognizer *tapRecognizer =
     [[UITapGestureRecognizer alloc] initWithTarget:self
@@ -37,10 +39,9 @@
 
 #pragma mark - Instance Methods
 
-- (void) setValue:(int)v
+- (void)showValue
 {
-  value = [NSNumber numberWithInt:v];
-  if ([value intValue] == 1) {
+  if ([_value intValue] == 0) {
     [self showX];
   } else {
     [self showO];
@@ -51,7 +52,7 @@
 
 #pragma mark - Instance Methods
 
-- (void)addBorders:(TTTBoxViewModel *)viewModel
+- (void)addBorders
 {
   if (viewModel.column > 0) {
     [self.layer addSublayer:[viewModel verticalBorder]];
@@ -60,6 +61,14 @@
   if (viewModel.row > 0) {
     [self.layer addSublayer:[viewModel horizontalBorder]];
   }
+}
+
+- (NSDictionary *)coordinatesOnBoard
+{
+  return @{
+    @"column": @(viewModel.column),
+    @"row": @(viewModel.row)
+  };
 }
 
 - (void)showO
@@ -86,11 +95,15 @@
 - (void)tapped:(UITapGestureRecognizer *)tapRecognizer
 {
   if (self.delegate &&
-    [self.delegate respondsToSelector:@selector(boxTapped:)]) {
-    if (value == nil) {
-      [self.delegate boxTapped:self];
-    } else {
-      NSLog(@"THIS BOX IS TAKEN");
+    [self.delegate respondsToSelector:
+      @selector(boxTappedWithValues:completion:)]) {
+
+    if (_value == nil) {
+      [self.delegate boxTappedWithValues:[self coordinatesOnBoard]
+                     completion:^(NSNumber *value) {
+                       self.value = value;
+                       [self showValue];
+                     }];
     }
   }
 }

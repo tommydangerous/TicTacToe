@@ -7,6 +7,7 @@
 @interface TTTBoxView : UIView
 
 @property (weak, nonatomic) id<TTTBoxDelegate> delegate;
+@property (strong, nonatomic) NSNumber *value;
 
 - (instancetype)initWithBoxViewModel:(TTTBoxViewModel *)viewModel;
 
@@ -14,6 +15,6 @@
 
 #pragma mark - Instance Methods
 
-- (void) setValue:(int)v;
+- (void)showValue;
 
 @end
