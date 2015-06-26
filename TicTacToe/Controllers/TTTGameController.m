@@ -6,8 +6,12 @@
 // Models
 #import "TTTPlayerMove.h"
 
+// Validator
+#import "TTTGameValidator.h"
+
 @interface TTTGameController ()
 {
+  TTTGameValidator *gameValidator;
   NSMutableArray *matrix;
   int numberOfMoves;
   TTTPlayerMove *recentPlayerMove;
@@ -21,6 +25,8 @@
 {
   self = [super init];
   if (!self) { return nil; }
+
+  gameValidator = [TTTGameValidator new];
 
   [self resetGame];
 
@@ -47,63 +53,36 @@
 
 - (void)checkWinningCondition
 {
-  NSNumber *consecutive = @1;
-  [self checkHorizontal:&consecutive];
+  TTTGameValidatorResult result = [gameValidator isGameOver:recentPlayerMove
+                                                 matrix:matrix
+                                                 numberOfMoves:numberOfMoves];
 
-  if ([self isGameOver:consecutive]) {
+  if (result != TTTGameValidatorResultIncomplete) {
     if (_delegate && [_delegate respondsToSelector:@selector(gameComplete:)]) {
-      [_delegate gameComplete:[self gameCompletionInfo:consecutive]];
-    }
-  }
-
-  NSLog(@"Consecutive: %i", [consecutive intValue]);
-}
-
-- (void)checkHorizontal:(NSNumber **)consecutive
-{
-  int leftPointer = recentPlayerMove.column;
-  while (leftPointer > 0) {
-    leftPointer--;
-    NSNumber *valueAtPoint =
-      [[matrix objectAtIndex:recentPlayerMove.row] objectAtIndex:leftPointer];
-    if ([recentPlayerMove.value intValue] == [valueAtPoint intValue]) {
-      *consecutive = @([*consecutive intValue] + 1);
-    }
-  }
-
-  int rightPointer = recentPlayerMove.column;
-  while (rightPointer < GameColumns - 1) {
-    rightPointer++;
-    NSNumber *valueAtPoint =
-      [[matrix objectAtIndex:recentPlayerMove.row] objectAtIndex:rightPointer];
-    if ([recentPlayerMove.value intValue] == [valueAtPoint intValue]) {
-      *consecutive = @([*consecutive intValue] + 1);
+      [_delegate gameComplete:[self gameCompletionInfo:result]];
     }
   }
 }
 
-- (NSDictionary *)gameCompletionInfo:(NSNumber *)consecutive
+- (NSDictionary *)gameCompletionInfo:(TTTGameValidatorResult)result
 {
   NSString *message;
   NSString *title;
-  if ([consecutive intValue] >= GameNeededToWin) {
-    message = [NSString stringWithFormat:@"Player %i has won",
-      [recentPlayerMove.value intValue] + 1];
-    title = @"Victory";
-  } else if (numberOfMoves >= GameRows * GameColumns) {
+  if (result == TTTGameValidatorResultTieGame) {
     message = @"No winner this time";
     title = @"Cat's Game";
+  } else {
+    int playerNumber = 1;
+    if (result == TTTGameValidatorResultPlayer2Victory) {
+      playerNumber = 2;
+    }
+    message = [NSString stringWithFormat:@"Player %i has won", playerNumber];
+    title = @"Victory";
   }
   return @{
     @"message": message,
     @"title": title
   };
-}
-
-- (BOOL)isGameOver:(NSNumber *)consecutive
-{
-  return [consecutive intValue] >= GameNeededToWin ||
-    numberOfMoves >= GameRows * GameColumns;
 }
 
 - (void)printMatrix
