@@ -39,6 +39,13 @@
 
 #pragma mark - Instance Methods
 
+- (void)resetBox
+{
+  oView.hidden = YES;
+  xView.hidden = YES;
+  self.value = nil;
+}
+
 - (void)showValue
 {
   if ([_value intValue] == 0) {

@@ -9,6 +9,7 @@
 @interface TTTBoardView ()
 {
   UIView *board;
+  NSMutableArray *boxes;
 }
 
 @end
@@ -21,6 +22,8 @@
   self = [super initWithFrame:frame];
   if (!self) { return nil; }
 
+  boxes = [NSMutableArray array];
+
   self.backgroundColor = [UIColor whiteColor];
   self.delegate = delegate;
 
@@ -28,6 +31,17 @@
   [self layoutBoxes];
 
   return self;
+}
+
+#pragma Mark - Instance Methods
+
+#pragma mark - Public Methods
+
+- (void)resetBoard
+{
+  for (TTTBoxView *box in boxes) {
+    [box resetBox];
+  }
 }
 
 #pragma Mark - Instance Methods
@@ -60,6 +74,8 @@
     TTTBoxView *box = [[TTTBoxView alloc] initWithBoxViewModel:viewModel];
     box.delegate = _delegate;
     [board addSubview:box];
+
+    [boxes addObject:box];
   }
 }
 

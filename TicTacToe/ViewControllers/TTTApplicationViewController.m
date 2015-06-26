@@ -3,11 +3,15 @@
 // Controllers
 #import "TTTGameController.h"
 
+// Protocols
+#import "TTTGameControllerProtocol.h"
+
 // Views
 #import "TTTBoardView.h"
 
-@interface TTTApplicationViewController ()
+@interface TTTApplicationViewController () <TTTGameControllerDelegate>
 {
+  TTTBoardView *boardView;
   TTTGameController *gameController;
 }
 
@@ -21,6 +25,7 @@
   if (!self) { return nil; }
 
   gameController = [TTTGameController new];
+  gameController.delegate = self;
 
   return self;
 }
@@ -32,10 +37,35 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
 
-  TTTBoardView *board =
-    [[TTTBoardView alloc] initWithFrame:[[UIScreen mainScreen] bounds]
-                          delegate:gameController];
-  [self.view addSubview:board];
+  boardView = [[TTTBoardView alloc] initWithFrame:[[UIScreen mainScreen] bounds]
+                                    delegate:gameController];
+  [self.view addSubview:boardView];
+}
+
+#pragma mark - Protocols
+
+#pragma mark - Protocols TTTGameControllerDelegate
+
+- (void)gameComplete:(NSDictionary *)info
+{
+  UIAlertView *alertView =
+    [[UIAlertView alloc] initWithTitle:info[@"title"]
+                         message:info[@"message"]
+                         delegate:self
+                         cancelButtonTitle:nil
+                         otherButtonTitles:@"Play again?", nil];
+  [alertView show];
+}
+
+#pragma mark - Protocols UIAlertViewDelegate
+
+- (void)alertView:(UIAlertView *)alertView
+        clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+  if (buttonIndex == 0) {
+    [gameController resetGame];
+    [boardView resetBoard];
+  }
 }
 
 @end

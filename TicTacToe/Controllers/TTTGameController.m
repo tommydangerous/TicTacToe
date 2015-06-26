@@ -1,9 +1,17 @@
 #import "TTTGameController.h"
 
+// Models
+#import "TTTPlayerMove.h"
+
+int kColumns = 3;
+int kNeededToWin = 3;
+int kRows = 3;
+
 @interface TTTGameController ()
 {
   NSMutableArray *matrix;
   int numberOfMoves;
+  TTTPlayerMove *recentPlayerMove;
 }
 
 @end
@@ -15,20 +23,88 @@
   self = [super init];
   if (!self) { return nil; }
 
-  [self resetMatrix];
-
-  numberOfMoves = 0;
+  [self resetGame];
 
   return self;
+}
+
+#pragma mark - Public Methods
+
+#pragma mark - Instance Methods
+
+- (void)resetGame
+{
+  numberOfMoves = 0;
+  matrix = [NSMutableArray array];
+  for (int i = 0; i < kRows; i++) {
+    [matrix addObject:[NSMutableArray arrayWithObjects:@9, @9, @9, nil]];
+  }
+  recentPlayerMove = nil;
 }
 
 #pragma mark - Private Methods
 
 #pragma mark - Instance Methods
 
-- (void)checkWinningCondition:(int)row column:(int)column
+- (void)checkWinningCondition
 {
+  NSNumber *consecutive = @1;
+  [self checkHorizontal:&consecutive];
 
+  if ([self isGameOver:consecutive]) {
+    if (_delegate && [_delegate respondsToSelector:@selector(gameComplete:)]) {
+      [_delegate gameComplete:[self gameCompletionInfo:consecutive]];
+    }
+  }
+
+  NSLog(@"Consecutive: %i", [consecutive intValue]);
+}
+
+- (void)checkHorizontal:(NSNumber **)consecutive
+{
+  int leftPointer = recentPlayerMove.column;
+  while (leftPointer > 0) {
+    leftPointer--;
+    NSNumber *valueAtPoint =
+      [[matrix objectAtIndex:recentPlayerMove.row] objectAtIndex:leftPointer];
+    if ([recentPlayerMove.value intValue] == [valueAtPoint intValue]) {
+      *consecutive = @([*consecutive intValue] + 1);
+    }
+  }
+
+  int rightPointer = recentPlayerMove.column;
+  while (rightPointer < kColumns - 1) {
+    rightPointer++;
+    NSNumber *valueAtPoint =
+      [[matrix objectAtIndex:recentPlayerMove.row] objectAtIndex:rightPointer];
+    if ([recentPlayerMove.value intValue] == [valueAtPoint intValue]) {
+      *consecutive = @([*consecutive intValue] + 1);
+    }
+  }
+}
+
+- (NSDictionary *)gameCompletionInfo:(NSNumber *)consecutive
+{
+  NSString *message;
+  NSString *title;
+  if ([consecutive intValue] >= kNeededToWin) {
+    message = [NSString stringWithFormat:@"Player %i has won",
+      [recentPlayerMove.value intValue] + 1];
+    title = @"Victory";
+  } else if (numberOfMoves >= kRows * kColumns) {
+    message = @"No winner this time";
+    title = @"Cat's Game";
+  }
+  return @{
+    @"message": message,
+    @"title": title
+  };
+}
+
+- (BOOL)isGameOver:(NSNumber *)consecutive
+{
+  return [consecutive intValue] >= kNeededToWin ||
+    numberOfMoves >= kRows * kColumns;
 }
 
 - (void)printMatrix
@@ -45,14 +121,9 @@
 {
   NSMutableArray *array = [matrix objectAtIndex:row];
   [array replaceObjectAtIndex:column withObject:value];
-}
 
-- (void)resetMatrix
-{
-  matrix = [NSMutableArray array];
-  for (int i = 0; i < 3; i++) {
-    [matrix addObject:[NSMutableArray arrayWithObjects:@9, @9, @9, nil]];
-  }
+  recentPlayerMove =
+    [[TTTPlayerMove alloc] initWithValue:value row:row column:column];
 }
 
 #pragma mark - Protocols
@@ -65,14 +136,14 @@
   NSNumber *value = @(numberOfMoves % 2);
   completion(value);
 
-  int column = [coordinates[@"column"] intValue];
-  int row = [coordinates[@"row"] intValue];
-  [self registerMove:value row:row column:column];
+  [self registerMove:value
+        row:[coordinates[@"row"] intValue]
+        column:[coordinates[@"column"] intValue]];
 
   numberOfMoves++;
 
-  if (numberOfMoves >= 5) {
-    [self checkWinningCondition:row column:column];
+  if (numberOfMoves >= (kRows + kColumns) - 1) {
+    [self checkWinningCondition];
   }
 
   [self printMatrix];

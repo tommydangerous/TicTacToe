@@ -20,6 +20,8 @@
 		AB8036591B3C9E000019208C /* TTTGameController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB8036581B3C9E000019208C /* TTTGameController.m */; };
 		AB80365C1B3CB3FA0019208C /* TTTXView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB80365B1B3CB3FA0019208C /* TTTXView.m */; };
 		AB80365F1B3CB5F30019208C /* TTTOView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB80365E1B3CB5F30019208C /* TTTOView.m */; };
+		AB8036641B3D14150019208C /* TTTPlayerMove.m in Sources */ = {isa = PBXBuildFile; fileRef = AB8036631B3D14150019208C /* TTTPlayerMove.m */; };
+		AB8036681B3D16D30019208C /* TTTGameValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = AB8036671B3D16D30019208C /* TTTGameValidator.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +61,11 @@
 		AB80365B1B3CB3FA0019208C /* TTTXView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTXView.m; sourceTree = "<group>"; };
 		AB80365D1B3CB5F30019208C /* TTTOView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTOView.h; sourceTree = "<group>"; };
 		AB80365E1B3CB5F30019208C /* TTTOView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTOView.m; sourceTree = "<group>"; };
+		AB8036601B3CCE780019208C /* TTTGameControllerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTGameControllerProtocol.h; sourceTree = "<group>"; };
+		AB8036621B3D14150019208C /* TTTPlayerMove.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTPlayerMove.h; sourceTree = "<group>"; };
+		AB8036631B3D14150019208C /* TTTPlayerMove.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTPlayerMove.m; sourceTree = "<group>"; };
+		AB8036661B3D16D30019208C /* TTTGameValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTGameValidator.h; sourceTree = "<group>"; };
+		AB8036671B3D16D30019208C /* TTTGameValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTGameValidator.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,8 +112,10 @@
 				AB8036221B3B84D70019208C /* Images.xcassets */,
 				AB8036241B3B84D70019208C /* LaunchScreen.xib */,
 				AB80361F1B3B84D70019208C /* Main.storyboard */,
+				AB8036611B3D13F90019208C /* Models */,
 				AB80364F1B3C83F60019208C /* Protocols */,
 				AB8036151B3B84D70019208C /* Supporting Files */,
+				AB8036651B3D16C20019208C /* Validators */,
 				AB80363C1B3B86070019208C /* ViewControllers */,
 				AB8036511B3C885C0019208C /* ViewModels */,
 				AB8036481B3B9DF40019208C /* Views */,
@@ -177,6 +186,7 @@
 			isa = PBXGroup;
 			children = (
 				AB8036501B3C841D0019208C /* TTTBoxProtocol.h */,
+				AB8036601B3CCE780019208C /* TTTGameControllerProtocol.h */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -197,6 +207,24 @@
 				AB8036581B3C9E000019208C /* TTTGameController.m */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		AB8036611B3D13F90019208C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				AB8036621B3D14150019208C /* TTTPlayerMove.h */,
+				AB8036631B3D14150019208C /* TTTPlayerMove.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		AB8036651B3D16C20019208C /* Validators */ = {
+			isa = PBXGroup;
+			children = (
+				AB8036661B3D16D30019208C /* TTTGameValidator.h */,
+				AB8036671B3D16D30019208C /* TTTGameValidator.m */,
+			);
+			path = Validators;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -299,7 +327,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB8036641B3D14150019208C /* TTTPlayerMove.m in Sources */,
 				AB8036181B3B84D70019208C /* main.m in Sources */,
+				AB8036681B3D16D30019208C /* TTTGameValidator.m in Sources */,
 				AB8036471B3B9CF70019208C /* TTTApplicationViewController.m in Sources */,
 				AB80364B1B3B9E180019208C /* TTTBoardView.m in Sources */,
 				AB8036421B3B86510019208C /* TTTAppDelegate.m in Sources */,

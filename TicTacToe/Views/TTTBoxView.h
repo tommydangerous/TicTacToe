@@ -15,6 +15,7 @@
 
 #pragma mark - Instance Methods
 
+- (void)resetBox;
 - (void)showValue;
 
 @end
