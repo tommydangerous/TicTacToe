@@ -58,8 +58,13 @@
                                                  numberOfMoves:numberOfMoves];
 
   if (result != TTTGameValidatorResultIncomplete) {
-    if (_delegate && [_delegate respondsToSelector:@selector(gameComplete:)]) {
-      [_delegate gameComplete:[self gameCompletionInfo:result]];
+    if (_delegate &&
+      [_delegate respondsToSelector:@selector(gameComplete:completion:)]) {
+
+      [_delegate gameComplete:[self gameCompletionInfo:result]
+                 completion:^{
+                   [self resetGame];
+                 }];
     }
   }
 }

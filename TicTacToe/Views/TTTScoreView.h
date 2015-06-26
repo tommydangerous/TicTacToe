@@ -2,4 +2,10 @@
 
 @interface TTTScoreView : UIView
 
+#pragma mark - Public Methods
+
+#pragma mark - Instance Methods
+
+- (void)changePlayerTurn;
+
 @end

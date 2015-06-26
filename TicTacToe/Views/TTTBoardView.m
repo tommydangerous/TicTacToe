@@ -12,6 +12,7 @@
   UIView *board;
   NSMutableArray *boxes;
   TTTScoreView *scoreView;
+  UIViewController *viewController;
 }
 
 @end
@@ -19,19 +20,20 @@
 @implementation TTTBoardView
 
 - (instancetype)initWithFrame:(CGRect)frame
-                delegate:(id<TTTBoxDelegate>)delegate
+                viewController:(UIViewController *)vc
+                boxViewDelegate:(id<TTTBoxDelegate>)delegate
 {
   self = [super initWithFrame:frame];
   if (!self) { return nil; }
 
   boxes = [NSMutableArray array];
+  viewController = vc;
 
   self.backgroundColor = [UIColor whiteColor];
-  self.delegate = delegate;
 
   [self createScoreView];
   [self createBoard];
-  [self layoutBoxes];
+  [self layoutBoxes:delegate];
 
   return self;
 }
@@ -62,7 +64,7 @@
   [self addSubview:board];
 }
 
-- (void)layoutBoxes
+- (void)layoutBoxes:(id<TTTBoxDelegate>)delegate
 {
   CGFloat dimension = CGRectGetWidth(board.frame) / 3;
   for (int i = 0; i < 9; i++) {
@@ -71,7 +73,7 @@
                                row:i / 3 column:i % 3];
 
     TTTBoxView *box = [[TTTBoxView alloc] initWithBoxViewModel:viewModel];
-    box.delegate = _delegate;
+    box.delegate = delegate;
     [board addSubview:box];
 
     [boxes addObject:box];
@@ -86,6 +88,27 @@
     )
   ];
   [self addSubview:scoreView];
+}
+
+#pragma mark - Protocols
+
+#pragma mark - Protocols TTTGameControllerDelegate
+
+- (void)gameComplete:(NSDictionary *)info completion:(void (^)(void))completion
+{
+  UIAlertController *alert =
+    [UIAlertController alertControllerWithTitle:info[@"title"]
+                           message:info[@"message"]
+                           preferredStyle:UIAlertControllerStyleAlert];
+  UIAlertAction *defaultAction =
+    [UIAlertAction actionWithTitle:@"Play again?"
+                   style:UIAlertActionStyleDefault
+                   handler:^(UIAlertAction *action) {
+                     completion();
+                     [self resetBoard];
+                   }];
+  [alert addAction:defaultAction];
+  [viewController presentViewController:alert animated:YES completion:nil];
 }
 
 @end

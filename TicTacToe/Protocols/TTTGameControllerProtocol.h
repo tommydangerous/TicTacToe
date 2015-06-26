@@ -2,6 +2,6 @@
 
 @protocol TTTGameControllerDelegate <NSObject>
 
-- (void)gameComplete:(NSDictionary *)info;
+- (void)gameComplete:(NSDictionary *)info completion:(void (^)(void))completion;
 
 @end

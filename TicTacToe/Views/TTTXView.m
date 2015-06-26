@@ -28,7 +28,7 @@
 - (UIView *)createLine
 {
   CGRect lineRect = CGRectMake(
-    0, (CGRectGetHeight(self.bounds) - 5) * 0.5, CGRectGetWidth(self.bounds), 5
+    0, (CGRectGetHeight(self.bounds) - 5) * 0.5, CGRectGetWidth(self.bounds), 3
   );
   UIView *line = [[UIView alloc] initWithFrame:lineRect];
   line.backgroundColor = [UIColor redColor];

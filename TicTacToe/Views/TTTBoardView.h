@@ -2,13 +2,13 @@
 
 // Protocols
 #import "TTTBoxProtocol.h"
+#import "TTTGameControllerProtocol.h"
 
-@interface TTTBoardView : UIView
-
-@property (weak, nonatomic) id<TTTBoxDelegate> delegate;
+@interface TTTBoardView : UIView <TTTGameControllerDelegate>
 
 - (instancetype)initWithFrame:(CGRect)frame
-                delegate:(id<TTTBoxDelegate>)delegate;
+                viewController:(UIViewController *)vc
+                boxViewDelegate:(id<TTTBoxDelegate>)delegate;
 
 #pragma Mark - Instance Methods
 
