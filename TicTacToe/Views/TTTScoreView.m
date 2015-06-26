@@ -6,9 +6,11 @@
 {
   int currentPlayerTurn;
   FBShimmeringView *player1Name;
-  UILabel *player1Score;
+  int player1Score;
+  UILabel *player1ScoreLabel;
   FBShimmeringView *player2Name;
-  UILabel *player2Score;
+  int player2Score;
+  UILabel *player2ScoreLabel;
 }
 
 @end
@@ -20,10 +22,10 @@
   self = [super initWithFrame:frame];
   if (!self) { return nil; }
 
+  player1Score = 0;
+  player2Score = 0;
   [self createPlayerLabels];
-
-  currentPlayerTurn = 0;
-  [self changePlayerTurn];
+  [self resetPlayerTurns];
 
   return self;
 }
@@ -35,12 +37,28 @@
 - (void)changePlayerTurn
 {
   if (currentPlayerTurn == 0) {
-    player1Name.shimmering = YES;
-    player2Name.shimmering = NO;
-  } else {
+    currentPlayerTurn = 1;
     player1Name.shimmering = NO;
     player2Name.shimmering = YES;
+  } else {
+    currentPlayerTurn = 0;
+    player1Name.shimmering = YES;
+    player2Name.shimmering = NO;
   }
+}
+
+- (void)resetPlayerTurns
+{
+  currentPlayerTurn = 1;
+  [self changePlayerTurn];
+}
+
+- (void)updateScores:(NSArray *)scores
+{
+  player1Score += [scores[0] intValue];
+  player2Score += [scores[1] intValue];
+  player1ScoreLabel.text = [NSString stringWithFormat:@"%i", player1Score];
+  player2ScoreLabel.text = [NSString stringWithFormat:@"%i", player2Score];
 }
 
 #pragma mark - Private Methods
@@ -76,18 +94,19 @@
       width, (height - CGRectGetHeight(label.frame)) - 20
     )];
     score.font = label.font;
-    score.text = @"0";
     score.textAlignment = label.textAlignment;
     [self addSubview: score];
 
     if ([value[0] intValue] == 1) {
       player1Name = shimmeringView;
-      player1Score = score;
+      player1ScoreLabel = score;
     } else {
       player2Name = shimmeringView;
-      player2Score = score;
+      player2ScoreLabel = score;
     }
   }
+
+  [self updateScores:@[@(player1Score), @(player2Score)]];
 }
 
 @end

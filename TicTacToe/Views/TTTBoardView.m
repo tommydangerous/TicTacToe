@@ -96,6 +96,9 @@
 
 - (void)gameComplete:(NSDictionary *)info completion:(void (^)(void))completion
 {
+  [scoreView resetPlayerTurns];
+  [scoreView updateScores:info[@"scores"]];
+
   UIAlertController *alert =
     [UIAlertController alertControllerWithTitle:info[@"title"]
                            message:info[@"message"]
@@ -109,6 +112,11 @@
                    }];
   [alert addAction:defaultAction];
   [viewController presentViewController:alert animated:YES completion:nil];
+}
+
+- (void)playerMadeMove
+{
+  [scoreView changePlayerTurn];
 }
 
 @end

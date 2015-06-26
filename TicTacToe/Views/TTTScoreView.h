@@ -7,5 +7,7 @@
 #pragma mark - Instance Methods
 
 - (void)changePlayerTurn;
+- (void)resetPlayerTurns;
+- (void)updateScores:(NSArray *)scores;
 
 @end
