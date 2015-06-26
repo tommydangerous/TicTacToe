@@ -1,0 +1,19 @@
+PODS:
+  - Shimmer (1.0.2)
+
+DEPENDENCIES:
+  - Shimmer (from `https://github.com/facebook/Shimmer.git`)
+
+EXTERNAL SOURCES:
+  Shimmer:
+    :git: https://github.com/facebook/Shimmer.git
+
+CHECKOUT OPTIONS:
+  Shimmer:
+    :commit: 95fd9feee13225fad1442f9aa3c054ca296477b5
+    :git: https://github.com/facebook/Shimmer.git
+
+SPEC CHECKSUMS:
+  Shimmer: c5374be1c2b0c9e292fb05b339a513cf291cac86
+
+COCOAPODS: 0.37.2

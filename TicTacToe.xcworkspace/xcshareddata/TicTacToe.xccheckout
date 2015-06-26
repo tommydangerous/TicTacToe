@@ -5,24 +5,20 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>5092AEB3-7FAA-491C-A82E-21E1A1D71D0D</string>
+	<string>84EA985B-BEB2-4002-B9EC-45BB037FFB73</string>
 	<key>IDESourceControlProjectName</key>
-	<string>project</string>
+	<string>TicTacToe</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>3308267744CE8DEC66F51416EFB094A5BD37AE82</key>
 		<string>github.com:tommydangerous/TicTacToe.git</string>
-		<key>734BDFE2AF41F390740EF9BD3456F61E9C68D505</key>
-		<string>github.com:facebook/Shimmer.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>TicTacToe.xcodeproj/project.xcworkspace</string>
+	<string>TicTacToe.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>3308267744CE8DEC66F51416EFB094A5BD37AE82</key>
-		<string>../..</string>
-		<key>734BDFE2AF41F390740EF9BD3456F61E9C68D505</key>
-		<string>../..Shimmer/</string>
+		<string>..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>github.com:tommydangerous/TicTacToe.git</string>
@@ -32,14 +28,6 @@
 	<string>3308267744CE8DEC66F51416EFB094A5BD37AE82</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
-		<dict>
-			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
-			<string>public.vcs.git</string>
-			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>734BDFE2AF41F390740EF9BD3456F61E9C68D505</string>
-			<key>IDESourceControlWCCName</key>
-			<string>Shimmer</string>
-		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>

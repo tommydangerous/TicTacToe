@@ -16,10 +16,6 @@
                           matrix:(NSArray *)matrix
                           numberOfMoves:(int)numberOfMoves
 {
-  if (numberOfMoves >= GameRows * GameColumns) {
-    return TTTGameValidatorResultTieGame;
-  }
-
   NSNumber *consecutive = @1;
   [self check:playerMove
         matrix:matrix
@@ -58,6 +54,8 @@
     } else {
       return TTTGameValidatorResultPlayer2Victory;
     }
+  } else if (numberOfMoves >= GameRows * GameColumns) {
+    return TTTGameValidatorResultTieGame;
   }
 
   return TTTGameValidatorResultIncomplete;

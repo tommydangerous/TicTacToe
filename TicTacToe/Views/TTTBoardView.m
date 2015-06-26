@@ -4,12 +4,14 @@
 #import "TTTBoxViewModel.h"
 
 // Views
+#import "TTTScoreView.h"
 #import "TTTBoxView.h"
 
 @interface TTTBoardView ()
 {
   UIView *board;
   NSMutableArray *boxes;
+  TTTScoreView *scoreView;
 }
 
 @end
@@ -27,6 +29,7 @@
   self.backgroundColor = [UIColor whiteColor];
   self.delegate = delegate;
 
+  [self createScoreView];
   [self createBoard];
   [self layoutBoxes];
 
@@ -50,14 +53,10 @@
 
 - (void)createBoard
 {
-  CGFloat screenHeight = CGRectGetHeight(self.frame);
-  CGFloat screenWidth = CGRectGetWidth(self.frame);
-
-  CGFloat boardWidth = screenWidth - 20;
-
-  CGRect boardFrame = CGRectMake(
-    10, (screenHeight - boardWidth) * 0.5, boardWidth, boardWidth
-  );
+  CGFloat boardWidth = CGRectGetWidth(self.frame) - 20;
+  CGFloat originY = (CGRectGetHeight(scoreView.frame) +
+    (CGRectGetHeight(self.frame) - boardWidth)) * 0.5;
+  CGRect boardFrame = CGRectMake(10, originY, boardWidth, boardWidth);
   board = [[UIView alloc] initWithFrame:boardFrame];
 
   [self addSubview:board];
@@ -77,6 +76,16 @@
 
     [boxes addObject:box];
   }
+}
+
+- (void)createScoreView
+{
+  scoreView = [[TTTScoreView alloc] initWithFrame:
+    CGRectMake(0, 0,
+      CGRectGetWidth(self.frame), CGRectGetHeight(self.frame) * 0.2
+    )
+  ];
+  [self addSubview:scoreView];
 }
 
 @end
