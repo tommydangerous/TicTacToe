@@ -16,11 +16,40 @@
                           matrix:(NSArray *)matrix
                           numberOfMoves:(int)numberOfMoves
 {
+  if (numberOfMoves >= GameRows * GameColumns) {
+    return TTTGameValidatorResultTieGame;
+  }
+
   NSNumber *consecutive = @1;
-  [self checkHorizontal:playerMove matrix:matrix consecutive:&consecutive];
+  [self check:playerMove
+        matrix:matrix
+        indexPointer:playerMove.column
+        maximum:GameColumns - 1
+        row:@(playerMove.row)
+        column:nil
+        consecutive:&consecutive];
 
   if ([consecutive intValue] < GameNeededToWin) {
-    [self checkVertical:playerMove matrix:matrix consecutive:&consecutive];
+    consecutive = @1;
+    [self check:playerMove
+          matrix:matrix
+          indexPointer:playerMove.row
+          maximum:GameRows - 1
+          row:nil
+          column:@(playerMove.column)
+          consecutive:&consecutive];
+  }
+
+  NSArray *points = @[@[@-1, @-1], @[@1, @1], @[@1, @-1], @[@-1, @1]];
+  for (NSArray *point in points) {
+    if ([consecutive intValue] < GameNeededToWin) {
+      consecutive = @1;
+      [self checkDiagnol:playerMove
+            matrix:matrix
+            rowIncrement:[point[0] intValue]
+            columnIncrement:[point[1] intValue]
+            consecutive:&consecutive];
+    }
   }
 
   if ([consecutive intValue] >= GameNeededToWin) {
@@ -29,8 +58,6 @@
     } else {
       return TTTGameValidatorResultPlayer2Victory;
     }
-  } else if (numberOfMoves >= GameRows * GameColumns) {
-    return TTTGameValidatorResultTieGame;
   }
 
   return TTTGameValidatorResultIncomplete;
@@ -40,53 +67,67 @@
 
 #pragma mark - Instance Methods
 
-- (void)checkHorizontal:(TTTPlayerMove *)playerMove
+- (void)check:(TTTPlayerMove *)playerMove
         matrix:(NSArray *)matrix
+        indexPointer:(int)indexPointer
+        maximum:(int)maximum
+        row:(NSNumber *)row
+        column:(NSNumber *)column
         consecutive:(NSNumber **)consecutive
 {
-  int leftPointer = playerMove.column;
-  while (leftPointer > 0) {
-    leftPointer--;
-    NSNumber *valueAtPoint =
-      [[matrix objectAtIndex:playerMove.row] objectAtIndex:leftPointer];
+  int lowerPointer = indexPointer;
+  while (lowerPointer > 0) {
+    lowerPointer--;
+    NSNumber *valueAtPoint;
+    if (row) {
+      valueAtPoint = [[matrix objectAtIndex:[row intValue]] objectAtIndex:
+        lowerPointer];
+    } else {
+      valueAtPoint = [[matrix objectAtIndex:lowerPointer] objectAtIndex:
+        [column intValue]];
+    }
     if ([playerMove.value intValue] == [valueAtPoint intValue]) {
       *consecutive = @([*consecutive intValue] + 1);
     }
   }
 
-  int rightPointer = playerMove.column;
-  while (rightPointer < GameColumns - 1) {
-    rightPointer++;
-    NSNumber *valueAtPoint =
-      [[matrix objectAtIndex:playerMove.row] objectAtIndex:rightPointer];
+  int upperPointer = indexPointer;
+  while (upperPointer < maximum) {
+    upperPointer++;
+    NSNumber *valueAtPoint;
+    if (row) {
+      valueAtPoint = [[matrix objectAtIndex:[row intValue]] objectAtIndex:
+        upperPointer];
+    } else {
+      valueAtPoint = [[matrix objectAtIndex:upperPointer] objectAtIndex:
+        [column intValue]];
+    }
     if ([playerMove.value intValue] == [valueAtPoint intValue]) {
       *consecutive = @([*consecutive intValue] + 1);
     }
   }
 }
 
-- (void)checkVertical:(TTTPlayerMove *)playerMove
+- (void)checkDiagnol:(TTTPlayerMove *)playerMove
         matrix:(NSArray *)matrix
+        rowIncrement:(int)rowIncrement
+        columnIncrement:(int)columnIncrement
         consecutive:(NSNumber **)consecutive
 {
-  int topPointer = playerMove.row;
-  while (topPointer > 0) {
-    topPointer--;
-    NSNumber *valueAtPoint =
-      [[matrix objectAtIndex:topPointer] objectAtIndex:playerMove.column];
-    if ([playerMove.value intValue] == [valueAtPoint intValue]) {
-      *consecutive = @([*consecutive intValue] + 1);
-    }
-  }
+  int rowPointer = playerMove.row + rowIncrement;
+  int columnPointer = playerMove.column + columnIncrement;
 
-  int bottomPointer = playerMove.row;
-  while (bottomPointer < GameRows - 1) {
-    bottomPointer++;
+  while (columnPointer >= 0 && rowPointer >= 0 &&
+    columnPointer <= GameColumns - 1 && rowPointer <= GameRows - 1) {
+
     NSNumber *valueAtPoint =
-      [[matrix objectAtIndex:bottomPointer] objectAtIndex:playerMove.column];
+      [[matrix objectAtIndex:rowPointer] objectAtIndex:columnPointer];
     if ([playerMove.value intValue] == [valueAtPoint intValue]) {
       *consecutive = @([*consecutive intValue] + 1);
     }
+
+    columnPointer = columnPointer + columnIncrement;
+    rowPointer = rowPointer + rowIncrement;
   }
 }
 

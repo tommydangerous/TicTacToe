@@ -123,8 +123,6 @@
   if (numberOfMoves >= (GameRows + GameColumns) - 1) {
     [self checkWinningCondition];
   }
-
-  [self printMatrix];
 }
 
 @end
