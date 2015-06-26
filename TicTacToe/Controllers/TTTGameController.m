@@ -1,11 +1,10 @@
 #import "TTTGameController.h"
 
+// Constants
+#import "TTTGameConstants.h"
+
 // Models
 #import "TTTPlayerMove.h"
-
-int kColumns = 3;
-int kNeededToWin = 3;
-int kRows = 3;
 
 @interface TTTGameController ()
 {
@@ -36,7 +35,7 @@ int kRows = 3;
 {
   numberOfMoves = 0;
   matrix = [NSMutableArray array];
-  for (int i = 0; i < kRows; i++) {
+  for (int i = 0; i < GameRows; i++) {
     [matrix addObject:[NSMutableArray arrayWithObjects:@9, @9, @9, nil]];
   }
   recentPlayerMove = nil;
@@ -73,7 +72,7 @@ int kRows = 3;
   }
 
   int rightPointer = recentPlayerMove.column;
-  while (rightPointer < kColumns - 1) {
+  while (rightPointer < GameColumns - 1) {
     rightPointer++;
     NSNumber *valueAtPoint =
       [[matrix objectAtIndex:recentPlayerMove.row] objectAtIndex:rightPointer];
@@ -87,11 +86,11 @@ int kRows = 3;
 {
   NSString *message;
   NSString *title;
-  if ([consecutive intValue] >= kNeededToWin) {
+  if ([consecutive intValue] >= GameNeededToWin) {
     message = [NSString stringWithFormat:@"Player %i has won",
       [recentPlayerMove.value intValue] + 1];
     title = @"Victory";
-  } else if (numberOfMoves >= kRows * kColumns) {
+  } else if (numberOfMoves >= GameRows * GameColumns) {
     message = @"No winner this time";
     title = @"Cat's Game";
   }
@@ -103,8 +102,8 @@ int kRows = 3;
 
 - (BOOL)isGameOver:(NSNumber *)consecutive
 {
-  return [consecutive intValue] >= kNeededToWin ||
-    numberOfMoves >= kRows * kColumns;
+  return [consecutive intValue] >= GameNeededToWin ||
+    numberOfMoves >= GameRows * GameColumns;
 }
 
 - (void)printMatrix
@@ -142,7 +141,7 @@ int kRows = 3;
 
   numberOfMoves++;
 
-  if (numberOfMoves >= (kRows + kColumns) - 1) {
+  if (numberOfMoves >= (GameRows + GameColumns) - 1) {
     [self checkWinningCondition];
   }
 
