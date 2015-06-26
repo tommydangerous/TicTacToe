@@ -8,11 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		AB476FAF1B3DBF9000F7B2AF /* libPods-Shimmer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB476FAE1B3DBF9000F7B2AF /* libPods-Shimmer.a */; };
+		AB476FB71B3E13AA00F7B2AF /* TTTPlayerMoveTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AB476FB61B3E13AA00F7B2AF /* TTTPlayerMoveTests.m */; };
 		AB8036181B3B84D70019208C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AB8036171B3B84D70019208C /* main.m */; };
 		AB8036211B3B84D70019208C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB80361F1B3B84D70019208C /* Main.storyboard */; };
 		AB8036231B3B84D70019208C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB8036221B3B84D70019208C /* Images.xcassets */; };
 		AB8036261B3B84D70019208C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB8036241B3B84D70019208C /* LaunchScreen.xib */; };
-		AB8036321B3B84D70019208C /* TicTacToeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AB8036311B3B84D70019208C /* TicTacToeTests.m */; };
 		AB8036421B3B86510019208C /* TTTAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AB8036411B3B86510019208C /* TTTAppDelegate.m */; };
 		AB8036471B3B9CF70019208C /* TTTApplicationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB8036461B3B9CF70019208C /* TTTApplicationViewController.m */; };
 		AB80364B1B3B9E180019208C /* TTTBoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB80364A1B3B9E180019208C /* TTTBoardView.m */; };
@@ -42,6 +42,7 @@
 		61C1059F9560C1FCE0DF9463 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		9182AD0048B430404458FB2D /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		AB476FAE1B3DBF9000F7B2AF /* libPods-Shimmer.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-Shimmer.a"; path = "Pods/../build/Debug-iphoneos/libPods-Shimmer.a"; sourceTree = "<group>"; };
+		AB476FB61B3E13AA00F7B2AF /* TTTPlayerMoveTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTPlayerMoveTests.m; sourceTree = "<group>"; };
 		AB8036121B3B84D70019208C /* TicTacToe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TicTacToe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB8036161B3B84D70019208C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB8036171B3B84D70019208C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -50,7 +51,6 @@
 		AB8036251B3B84D70019208C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		AB80362B1B3B84D70019208C /* TicTacToeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TicTacToeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB8036301B3B84D70019208C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AB8036311B3B84D70019208C /* TicTacToeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TicTacToeTests.m; sourceTree = "<group>"; };
 		AB8036401B3B86510019208C /* TTTAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTAppDelegate.h; sourceTree = "<group>"; };
 		AB8036411B3B86510019208C /* TTTAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTAppDelegate.m; sourceTree = "<group>"; };
 		AB8036451B3B9CF70019208C /* TTTApplicationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTApplicationViewController.h; sourceTree = "<group>"; };
@@ -118,6 +118,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		AB476FB51B3E134E00F7B2AF /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				AB476FB61B3E13AA00F7B2AF /* TTTPlayerMoveTests.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		AB8036091B3B84D70019208C = {
 			isa = PBXGroup;
 			children = (
@@ -170,7 +178,7 @@
 		AB80362E1B3B84D70019208C /* TicTacToeTests */ = {
 			isa = PBXGroup;
 			children = (
-				AB8036311B3B84D70019208C /* TicTacToeTests.m */,
+				AB476FB51B3E134E00F7B2AF /* Models */,
 				AB80362F1B3B84D70019208C /* Supporting Files */,
 			);
 			path = TicTacToeTests;
@@ -428,7 +436,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AB8036321B3B84D70019208C /* TicTacToeTests.m in Sources */,
+				AB476FB71B3E13AA00F7B2AF /* TTTPlayerMoveTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
