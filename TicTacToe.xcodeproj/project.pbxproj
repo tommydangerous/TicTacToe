@@ -11,6 +11,7 @@
 		AB476FB71B3E13AA00F7B2AF /* TTTPlayerMoveTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AB476FB61B3E13AA00F7B2AF /* TTTPlayerMoveTests.m */; };
 		AB476FBA1B3E186800F7B2AF /* TTTGameValidatorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AB476FB91B3E186800F7B2AF /* TTTGameValidatorTests.m */; };
 		AB476FBD1B3E29D300F7B2AF /* TTTGameControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AB476FBC1B3E29D300F7B2AF /* TTTGameControllerTests.m */; };
+		AB476FBF1B3F1ABE00F7B2AF /* 131591d.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AB476FBE1B3F1ABE00F7B2AF /* 131591d.jpg */; };
 		AB8036181B3B84D70019208C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AB8036171B3B84D70019208C /* main.m */; };
 		AB8036231B3B84D70019208C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB8036221B3B84D70019208C /* Images.xcassets */; };
 		AB8036261B3B84D70019208C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB8036241B3B84D70019208C /* LaunchScreen.xib */; };
@@ -46,6 +47,7 @@
 		AB476FB61B3E13AA00F7B2AF /* TTTPlayerMoveTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTPlayerMoveTests.m; sourceTree = "<group>"; };
 		AB476FB91B3E186800F7B2AF /* TTTGameValidatorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTGameValidatorTests.m; sourceTree = "<group>"; };
 		AB476FBC1B3E29D300F7B2AF /* TTTGameControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTGameControllerTests.m; sourceTree = "<group>"; };
+		AB476FBE1B3F1ABE00F7B2AF /* 131591d.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 131591d.jpg; sourceTree = "<group>"; };
 		AB8036121B3B84D70019208C /* TicTacToe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TicTacToe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB8036161B3B84D70019208C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB8036171B3B84D70019208C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -171,6 +173,7 @@
 				AB8036691B3D17260019208C /* Constants */,
 				AB8036561B3C9D340019208C /* Controllers */,
 				AB8036221B3B84D70019208C /* Images.xcassets */,
+				AB476FBE1B3F1ABE00F7B2AF /* 131591d.jpg */,
 				AB8036241B3B84D70019208C /* LaunchScreen.xib */,
 				AB8036611B3D13F90019208C /* Models */,
 				AB80364F1B3C83F60019208C /* Protocols */,
@@ -382,6 +385,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB476FBF1B3F1ABE00F7B2AF /* 131591d.jpg in Resources */,
 				AB8036261B3B84D70019208C /* LaunchScreen.xib in Resources */,
 				AB8036231B3B84D70019208C /* Images.xcassets in Resources */,
 			);
@@ -567,6 +571,7 @@
 			baseConfigurationReference = 9182AD0048B430404458FB2D /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PROJECT_DIR)",
 					"$(SRCROOT)/",
@@ -584,6 +589,7 @@
 			baseConfigurationReference = 61C1059F9560C1FCE0DF9463 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PROJECT_DIR)",
 					"$(SRCROOT)/",
