@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		AB476FAF1B3DBF9000F7B2AF /* libPods-Shimmer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB476FAE1B3DBF9000F7B2AF /* libPods-Shimmer.a */; };
 		AB476FB71B3E13AA00F7B2AF /* TTTPlayerMoveTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AB476FB61B3E13AA00F7B2AF /* TTTPlayerMoveTests.m */; };
+		AB476FBA1B3E186800F7B2AF /* TTTGameValidatorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AB476FB91B3E186800F7B2AF /* TTTGameValidatorTests.m */; };
 		AB8036181B3B84D70019208C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AB8036171B3B84D70019208C /* main.m */; };
-		AB8036211B3B84D70019208C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB80361F1B3B84D70019208C /* Main.storyboard */; };
 		AB8036231B3B84D70019208C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB8036221B3B84D70019208C /* Images.xcassets */; };
 		AB8036261B3B84D70019208C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB8036241B3B84D70019208C /* LaunchScreen.xib */; };
 		AB8036421B3B86510019208C /* TTTAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AB8036411B3B86510019208C /* TTTAppDelegate.m */; };
@@ -43,10 +43,10 @@
 		9182AD0048B430404458FB2D /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		AB476FAE1B3DBF9000F7B2AF /* libPods-Shimmer.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-Shimmer.a"; path = "Pods/../build/Debug-iphoneos/libPods-Shimmer.a"; sourceTree = "<group>"; };
 		AB476FB61B3E13AA00F7B2AF /* TTTPlayerMoveTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTPlayerMoveTests.m; sourceTree = "<group>"; };
+		AB476FB91B3E186800F7B2AF /* TTTGameValidatorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTGameValidatorTests.m; sourceTree = "<group>"; };
 		AB8036121B3B84D70019208C /* TicTacToe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TicTacToe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB8036161B3B84D70019208C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB8036171B3B84D70019208C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		AB8036201B3B84D70019208C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AB8036221B3B84D70019208C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		AB8036251B3B84D70019208C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		AB80362B1B3B84D70019208C /* TicTacToeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TicTacToeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -126,6 +126,14 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		AB476FB81B3E17BD00F7B2AF /* Validators */ = {
+			isa = PBXGroup;
+			children = (
+				AB476FB91B3E186800F7B2AF /* TTTGameValidatorTests.m */,
+			);
+			path = Validators;
+			sourceTree = "<group>";
+		};
 		AB8036091B3B84D70019208C = {
 			isa = PBXGroup;
 			children = (
@@ -154,7 +162,6 @@
 				AB8036561B3C9D340019208C /* Controllers */,
 				AB8036221B3B84D70019208C /* Images.xcassets */,
 				AB8036241B3B84D70019208C /* LaunchScreen.xib */,
-				AB80361F1B3B84D70019208C /* Main.storyboard */,
 				AB8036611B3D13F90019208C /* Models */,
 				AB80364F1B3C83F60019208C /* Protocols */,
 				AB8036151B3B84D70019208C /* Supporting Files */,
@@ -178,6 +185,7 @@
 		AB80362E1B3B84D70019208C /* TicTacToeTests */ = {
 			isa = PBXGroup;
 			children = (
+				AB476FB81B3E17BD00F7B2AF /* Validators */,
 				AB476FB51B3E134E00F7B2AF /* Models */,
 				AB80362F1B3B84D70019208C /* Supporting Files */,
 			);
@@ -363,7 +371,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AB8036211B3B84D70019208C /* Main.storyboard in Resources */,
 				AB8036261B3B84D70019208C /* LaunchScreen.xib in Resources */,
 				AB8036231B3B84D70019208C /* Images.xcassets in Resources */,
 			);
@@ -437,6 +444,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AB476FB71B3E13AA00F7B2AF /* TTTPlayerMoveTests.m in Sources */,
+				AB476FBA1B3E186800F7B2AF /* TTTGameValidatorTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -451,14 +459,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		AB80361F1B3B84D70019208C /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				AB8036201B3B84D70019208C /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		AB8036241B3B84D70019208C /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
