@@ -33,20 +33,6 @@
   return self;
 }
 
-#pragma mark - Public Methods
-
-#pragma mark - Instance Methods
-
-- (void)resetGame
-{
-  numberOfMoves = 0;
-  matrix = [NSMutableArray array];
-  for (int i = 0; i < GameRows; i++) {
-    [matrix addObject:[NSMutableArray arrayWithObjects:@9, @9, @9, nil]];
-  }
-  recentPlayerMove = nil;
-}
-
 #pragma mark - Private Methods
 
 #pragma mark - Instance Methods
@@ -122,6 +108,16 @@
     [[TTTPlayerMove alloc] initWithValue:value row:row column:column];
 }
 
+- (void)resetGame
+{
+  numberOfMoves = 0;
+  matrix = [NSMutableArray array];
+  for (int i = 0; i < GameRows; i++) {
+    [matrix addObject:[NSMutableArray arrayWithObjects:@9, @9, @9, nil]];
+  }
+  recentPlayerMove = nil;
+}
+
 #pragma mark - Protocols
 
 #pragma mark - Protocols TTTBoxProtocol
@@ -130,7 +126,9 @@
         completion:(void (^)(NSNumber *value))completion
 {
   NSNumber *value = @(numberOfMoves % 2);
-  completion(value);
+  if (completion) {
+    completion(value);
+  }
 
   [self registerMove:value
         row:[coordinates[@"row"] intValue]

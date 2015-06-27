@@ -10,6 +10,7 @@
 		AB476FAF1B3DBF9000F7B2AF /* libPods-Shimmer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB476FAE1B3DBF9000F7B2AF /* libPods-Shimmer.a */; };
 		AB476FB71B3E13AA00F7B2AF /* TTTPlayerMoveTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AB476FB61B3E13AA00F7B2AF /* TTTPlayerMoveTests.m */; };
 		AB476FBA1B3E186800F7B2AF /* TTTGameValidatorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AB476FB91B3E186800F7B2AF /* TTTGameValidatorTests.m */; };
+		AB476FBD1B3E29D300F7B2AF /* TTTGameControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AB476FBC1B3E29D300F7B2AF /* TTTGameControllerTests.m */; };
 		AB8036181B3B84D70019208C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AB8036171B3B84D70019208C /* main.m */; };
 		AB8036231B3B84D70019208C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB8036221B3B84D70019208C /* Images.xcassets */; };
 		AB8036261B3B84D70019208C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB8036241B3B84D70019208C /* LaunchScreen.xib */; };
@@ -44,6 +45,7 @@
 		AB476FAE1B3DBF9000F7B2AF /* libPods-Shimmer.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-Shimmer.a"; path = "Pods/../build/Debug-iphoneos/libPods-Shimmer.a"; sourceTree = "<group>"; };
 		AB476FB61B3E13AA00F7B2AF /* TTTPlayerMoveTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTPlayerMoveTests.m; sourceTree = "<group>"; };
 		AB476FB91B3E186800F7B2AF /* TTTGameValidatorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTGameValidatorTests.m; sourceTree = "<group>"; };
+		AB476FBC1B3E29D300F7B2AF /* TTTGameControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTGameControllerTests.m; sourceTree = "<group>"; };
 		AB8036121B3B84D70019208C /* TicTacToe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TicTacToe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB8036161B3B84D70019208C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB8036171B3B84D70019208C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -134,6 +136,14 @@
 			path = Validators;
 			sourceTree = "<group>";
 		};
+		AB476FBB1B3E29B800F7B2AF /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				AB476FBC1B3E29D300F7B2AF /* TTTGameControllerTests.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
 		AB8036091B3B84D70019208C = {
 			isa = PBXGroup;
 			children = (
@@ -185,9 +195,10 @@
 		AB80362E1B3B84D70019208C /* TicTacToeTests */ = {
 			isa = PBXGroup;
 			children = (
-				AB476FB81B3E17BD00F7B2AF /* Validators */,
+				AB476FBB1B3E29B800F7B2AF /* Controllers */,
 				AB476FB51B3E134E00F7B2AF /* Models */,
 				AB80362F1B3B84D70019208C /* Supporting Files */,
+				AB476FB81B3E17BD00F7B2AF /* Validators */,
 			);
 			path = TicTacToeTests;
 			sourceTree = "<group>";
@@ -443,6 +454,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB476FBD1B3E29D300F7B2AF /* TTTGameControllerTests.m in Sources */,
 				AB476FB71B3E13AA00F7B2AF /* TTTPlayerMoveTests.m in Sources */,
 				AB476FBA1B3E186800F7B2AF /* TTTGameValidatorTests.m in Sources */,
 			);
